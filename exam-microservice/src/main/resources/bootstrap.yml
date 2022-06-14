@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: exam-microservice
+  datasource:
+    url: jdbc:mysql://localhost:3306/it2030
+    username: root
+    password: 123456
+    jpa:
+      hibernate:
+        ddl-auto: none
+
+## Hibernate Properties
+# The SQL dialect makes Hibernate generate better SQL for the chosen database
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8081
+
