@@ -1,11 +1,16 @@
 package com.itpatagonia.microservices.studentmicroservice.service;
 
 import com.itpatagonia.microservices.studentmicroservice.Exceptions.NoEntityException;
+import com.itpatagonia.microservices.studentmicroservice.feignclients.ExamFeignClient;
 import com.itpatagonia.microservices.studentmicroservice.model.Exam;
 import com.itpatagonia.microservices.studentmicroservice.model.Student;
 import com.itpatagonia.microservices.studentmicroservice.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
@@ -21,8 +26,16 @@ public class StudentService {
     @Autowired
     RestTemplate restTemplate;
 
+    @Autowired
+    ExamFeignClient examFeignClient;
+
     public Student createStudent(Student student) {
         return studentRepository.save(student);
+    }
+
+
+    public Exam createExam(@RequestBody Exam exam){
+        return examFeignClient.createExam(exam);
     }
 
     public List<Student> findAll() {

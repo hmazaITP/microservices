@@ -26,6 +26,12 @@ public class StudentController {
         return new ResponseEntity<Student>(studentNew,HttpStatus.CREATED);
     }
 
+    @PostMapping(value ="/createexam/{studentId}")
+    public ResponseEntity<Exam> createExam(@PathVariable("studentId") Long studentId , @RequestBody Exam exam){
+        exam.setStudentId(studentId);
+        return ResponseEntity.ok().body(studentService.createExam(exam));
+    }
+
     @GetMapping("/list")
     public ResponseEntity<List<Student>> getStudents(){
         return ResponseEntity.ok(studentService.findAll());
