@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/config-microservice/config-microservice.iml" filepath="$PROJECT_DIR$/config-microservice/config-microservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-service/eureka-server.iml" filepath="$PROJECT_DIR$/eureka-service/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exam-microservice/exam-microservice.iml" filepath="$PROJECT_DIR$/exam-microservice/exam-microservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/microservices.iml" filepath="$PROJECT_DIR$/.idea/microservices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/student-microservice/student-microservice.iml" filepath="$PROJECT_DIR$/student-microservice/student-microservice.iml" />
     </modules>
   </component>
 </project>
