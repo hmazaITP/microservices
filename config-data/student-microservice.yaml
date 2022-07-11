@@ -1,2 +1,21 @@
 server:
-  port: 8001
+  port: ${PORT:${SERVER_PORT:0}}
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/it2030
+    username: root
+    password: 123456
+    jpa:
+      hibernate:
+        ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
