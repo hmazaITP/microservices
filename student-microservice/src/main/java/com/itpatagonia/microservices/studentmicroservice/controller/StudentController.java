@@ -20,7 +20,7 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @PostMapping(value ="/create")
+    @PostMapping
     public ResponseEntity<Student> createStudent(@RequestBody Student student){
         Student studentNew = studentService.createStudent(student);
         return new ResponseEntity<Student>(studentNew,HttpStatus.CREATED);
@@ -61,7 +61,7 @@ public class StudentController {
         return ResponseEntity.ok().body(studentMap);
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<Student> updateStudent(@RequestBody Student student){
         Student studentNew = new Student();
         try {

@@ -17,7 +17,7 @@ public class ExamController {
     @Autowired
     private ExamService examService;
 
-    @PostMapping(value ="/create")
+    @PostMapping
     public ResponseEntity<Exam> createExam(@RequestBody Exam exam){
         Exam examNew = examService.createExam(exam);
         return new ResponseEntity<Exam>(examNew,HttpStatus.CREATED);
@@ -46,7 +46,7 @@ public class ExamController {
         return ResponseEntity.ok().body(examService.finByStudentId(studentId));
     }
 
-    @PutMapping("/update")
+    @PutMapping
     public ResponseEntity<Exam> updateExam(@RequestBody Exam exam){
         Exam examNew = new Exam();
         try {
