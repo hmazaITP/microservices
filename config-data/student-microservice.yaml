@@ -2,7 +2,7 @@ server:
   port: ${PORT:${SERVER_PORT:0}}
 spring:
   datasource:
-    driverClassName: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/it2030
     username: root
     password: 123456
