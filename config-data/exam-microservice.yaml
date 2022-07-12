@@ -5,13 +5,15 @@ spring:
     url: jdbc:mysql://localhost:3306/it2030
     username: root
     password: 123456
-    jpa:
-      show-sql: true
-      hibernate:
-        ddl-auto: update
+  jpa:
+    hibernate:
+      ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+#spring.jpa.properties.hibernate.format.sql=true
+
 eureka:
   client:
     fetch-registry: true
