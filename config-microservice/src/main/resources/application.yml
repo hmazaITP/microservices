@@ -11,7 +11,7 @@ spring:
     config:
       server:
         git:
-          default-label: api-gateway
+          default-label: circuit-breaker
           uri: https://github.com/hmazaITP/microservices
           search-paths: config-data
   application:

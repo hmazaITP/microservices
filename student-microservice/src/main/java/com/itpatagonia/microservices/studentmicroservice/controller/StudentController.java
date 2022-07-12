@@ -4,6 +4,7 @@ import com.itpatagonia.microservices.studentmicroservice.Exceptions.NoEntityExce
 import com.itpatagonia.microservices.studentmicroservice.model.Exam;
 import com.itpatagonia.microservices.studentmicroservice.model.Student;
 import com.itpatagonia.microservices.studentmicroservice.service.StudentService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ public class StudentController {
         return new ResponseEntity<Student>(studentNew,HttpStatus.CREATED);
     }
 
+    @CircuitBreaker(name = "examsCB", fallbackMethod = "fallBackSaveExam")
     @PostMapping(value ="/createexam/{studentId}")
     public ResponseEntity<Exam> createExam(@PathVariable("studentId") Long studentId , @RequestBody Exam exam){
         exam.setStudentId(studentId);
@@ -50,6 +52,7 @@ public class StudentController {
         }
     }
 
+    @CircuitBreaker(name = "examsCB", fallbackMethod = "fallBackGetExams")
     @GetMapping("/examsbystudent/{id}")
     public ResponseEntity<Map<String,Object>> getExams(@PathVariable("id") Long studentId){
         List<Exam> exams = studentService.getExams(studentId);
@@ -86,4 +89,11 @@ public class StudentController {
         }
     }
 
+    private ResponseEntity<List<Exam>> fallBackGetExams(@PathVariable("studentId") Long studentId, RuntimeException e) {
+        return new ResponseEntity("El Estudiante " + studentId + " todavia no rinde examenes(CB)", HttpStatus.OK);
+    }
+
+    private ResponseEntity<Exam> fallBackSaveExam(@PathVariable("studentId") Long studentId , @RequestBody Exam exam, RuntimeException e) {
+        return new ResponseEntity("El Estudiante " + studentId + " no puede rendir examen()CB", HttpStatus.OK);
+    }
 }
