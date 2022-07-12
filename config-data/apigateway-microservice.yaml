@@ -1,6 +1,5 @@
 server:
   port: 8080
-
 eureka:
   client:
     fetch-registry: true
@@ -15,11 +14,11 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: students-microservice
-          uri: lb://students-microservice
+        - id: student-microservice
+          uri: lb://student-microservice
           predicates:
             - Path=/students/**
-        - id: exams-microservice
-          uri: lb://exams-microservice
+        - id: exam-microservice
+          uri: lb://exam-microservice
           predicates:
             - Path=/exams/**
