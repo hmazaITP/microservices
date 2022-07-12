@@ -50,7 +50,7 @@ public class StudentController {
         }
     }
 
-    @GetMapping("/exams/{id}")
+    @GetMapping("/examsbystudent/{id}")
     public ResponseEntity<Map<String,Object>> getExams(@PathVariable("id") Long studentId){
         List<Exam> exams = studentService.getExams(studentId);
         Map<String,Object> studentMap = new HashMap<>();

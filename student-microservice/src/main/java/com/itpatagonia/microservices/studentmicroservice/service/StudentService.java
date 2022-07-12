@@ -47,7 +47,8 @@ public class StudentService {
     }
 
     public List<Exam> getExams(Long studentId){
-        return restTemplate.getForObject("http://localhost:8002/exams/bystudent/"+studentId,List.class);
+        //return restTemplate.getForObject("http://localhost:8002/exams/bystudent/"+studentId,List.class);
+        return (List<Exam>) examFeignClient.finByStudentId(studentId).getBody();
     }
 
     public Student updateStudent(Student student) throws NoEntityException {
